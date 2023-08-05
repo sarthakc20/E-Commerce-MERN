@@ -19,7 +19,7 @@ const alert = useAlert();
 
 const navigate = useNavigate();
 
-const { error, isUpdated, loading } = useSelector((state) => state.profile); // From Profile
+const { error, isUpdated, loading } = useSelector((state) => state.profile); // From Profile Reducer
 
 const [oldPassword, setOldPassword] = useState("");
 

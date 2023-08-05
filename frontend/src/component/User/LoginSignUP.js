@@ -5,7 +5,7 @@ import MetaData from "../layout/MetaData";
 import {AiOutlineMail} from "react-icons/ai";
 import {BiLockOpenAlt} from "react-icons/bi";
 import {MdSwitchAccount} from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import profilelogo from "../../images/user.png";
 import { useSelector, useDispatch } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
@@ -14,6 +14,8 @@ import { useAlert } from "react-alert";
 const LoginSignUP = () => {
 
     const [activeTab, setActiveTab] = useState("login"); // For MetaData
+
+    const location = useLocation();
 
     const alert = useAlert();
 
@@ -74,6 +76,9 @@ const LoginSignUP = () => {
         }
     };
 
+    const redirect = location.search ? location.search.split("=")[1] : "/account"; 
+    //.search property returns the querystring part of a URL, including the question mark (?)
+
     useEffect(() => {
       if (error) {
         alert.error(error);
@@ -81,9 +86,9 @@ const LoginSignUP = () => {
       }
 
       if (isAuthenticated) {
-        navigate("/account");
+        navigate(redirect);
       }
-    }, [dispatch, error, alert, isAuthenticated, navigate]);
+    }, [dispatch, error, alert, isAuthenticated, navigate, redirect]);
     
 
     const switchTabs = (e, tab) => {

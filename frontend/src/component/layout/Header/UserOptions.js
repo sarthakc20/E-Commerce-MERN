@@ -10,11 +10,13 @@ import { FaList } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { AiFillHome } from "react-icons/ai";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { logout } from "../../../actions/userAction";
 
 const UserOptions = ({ user }) => {
+  const { cartItems } = useSelector((state) => state.cart);
+
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -27,7 +29,15 @@ const UserOptions = ({ user }) => {
   const options = [
     { icon: <FaList />, name: "Orders", func: orders },
     { icon: <BsFillPersonFill />, name: "Profile", func: account },
-    { icon: <BsCartFill />, name: "Cart", func: cart },
+    {
+      icon: (
+        <BsCartFill
+          style={{ color: cartItems.length > 0 ? "#fa8163f6" : "unset" }}
+        />
+      ),
+      name: `Cart (${cartItems.length})`,
+      func: cart,
+    },
     { icon: <MdLogout />, name: "Logout", func: logoutUser },
   ];
 
@@ -97,6 +107,7 @@ const UserOptions = ({ user }) => {
             icon={item.icon}
             tooltipTitle={item.name}
             onClick={item.func}
+            tooltipOpen={window.innerHeight <= 600 ? true : false}
           />
         ))}
       </SpeedDial>
