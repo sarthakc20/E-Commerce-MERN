@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./component/layout/Header/Header";
 import Footer from "./component/layout/Footer/Footer";
@@ -21,11 +21,24 @@ import ForgotPassword from "./component/User/ForgotPassword";
 import ResetPassword from "./component/User/ResetPassword";
 import Cart from "./component/Cart/Cart";
 import Shipping from "./component/Cart/Shipping";
+import ConfirmOrder from "./component/Cart/ConfirmOrder";
+import Payment from "./component/Cart/Payment";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  React.useEffect(() => {
+  const [stripeApiKey, setstripeApiKey] = useState("");
+
+  async function getStripeApiKey() {
+    const { data } = await axios.get("/api/v1/stripeapikey");
+
+    setstripeApiKey(data.stripeApiKey);
+  }
+
+  useEffect(() => {
     WebFont.load({
       google: {
         families: ["Roboto", "Droid Sans", "Chilanka"],
@@ -33,6 +46,8 @@ function App() {
     });
 
     store.dispatch(loadUser());
+
+    getStripeApiKey();
   }, []);
 
   return (
@@ -53,12 +68,20 @@ function App() {
           <Route path="/me/update" element={<UpdateProfile />} />
           <Route path="/password/update" element={<UpdatePassword />} />
           <Route path="/shipping" element={<Shipping />} />
+          <Route path="/order/confirm" element={<ConfirmOrder />} />
+          {stripeApiKey && (<Route
+            path="/process/payment"
+            element={
+                <Elements stripe={loadStripe(stripeApiKey)}>
+                  <Payment />
+                </Elements>
+            }
+          />)}
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword />} />
         <Route path="/cart" element={<Cart />} />
-
       </Routes>
       <Footer />
     </>
