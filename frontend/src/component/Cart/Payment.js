@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import CheckoutSteps from "./CheckoutSteps";
 import MetaData from "../layout/MetaData";
 import { Typography } from "@mui/material";
@@ -15,13 +15,16 @@ import { BsFillCalendarEventFill } from "react-icons/bs";
 import { MdVpnKey } from "react-icons/md";
 import axios from "axios";
 import { useAlert } from "react-alert";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { createOrder, clearErrors } from "../../actions/orderAction";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
 
   const alert = useAlert();
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -33,10 +36,20 @@ const Payment = () => {
 
   const { shippingInfo, cartItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
+  const { error } = useSelector((state) => state.newOrder);
 
   const paymentData = {
-    amount: Math.round(orderInfo.totalPrice * 100)
+    amount: Math.round(orderInfo.totalPrice * 100),
     // Stripe accepts payment in Paisa since, 1 Rupee= 100 Paise
+  };
+
+  const order = {
+    shippingInfo,
+    orderItems: cartItems,
+    itemsPrice: orderInfo.subtotal,
+    taxPrice: orderInfo.tax,
+    shippingPrice: orderInfo.shippingCharges,
+    totalPrice: orderInfo.totalPrice,
   };
 
   const submitHandler = async (e) => {
@@ -82,17 +95,30 @@ const Payment = () => {
         alert.error(result.error.message);
       } else {
         if (result.paymentIntent.status === "succeeded") {
+          order.paymentInfo = {
+            id: result.paymentIntent.id,
+            status: result.paymentIntent.status,
+          };
+
+          dispatch(createOrder(order));
+
           navigate("/success");
         } else {
           alert.error("There's some issue while processing payment ");
         }
       }
-
     } catch (error) {
       payBtn.current.disabled = false;
       alert.error(error.response.data.message);
     }
   };
+
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+  }, [dispatch, error, alert]);
 
   return (
     <>
