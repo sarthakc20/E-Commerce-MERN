@@ -11,7 +11,6 @@ import { useAlert } from "react-alert";
 import { clearErrors, myOrders } from "../../actions/orderAction";
 
 const MyOrders = () => {
-  // const params = useParams();
 
   const alert = useAlert();
 

@@ -142,4 +142,9 @@
       margin: 0 0.5vmax;
       font: 300 1.3vmax "Roboto";
     }
+
+    .productCardSpan {
+      font: 300 1vmax "Roboto";
+      display: block;
+    }
 }

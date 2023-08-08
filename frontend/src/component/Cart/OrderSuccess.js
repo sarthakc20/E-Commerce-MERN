@@ -16,7 +16,7 @@ const OrderSuccess = () => {
     <div  className="orderSuccess">
       <FiCheckCircle />
 
-      <Typography><span>{user.name ? `${user.name.split(" ")[0]} - Orders` : "Loading..."},</span> Your order has been placed successfully </Typography>
+      <Typography>{user.name ? `${user.name.split(" ")[0]}` : "Loading..."}, Your order has been placed successfully </Typography>
       <Link to="/orders">View Orders</Link>
     </div>
     </>
