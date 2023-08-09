@@ -33,12 +33,16 @@ import { loadStripe } from "@stripe/stripe-js";
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
-  const [stripeApiKey, setstripeApiKey] = useState("");
+  const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
-    const { data } = await axios.get("/api/v1/stripeapikey");
+    try {
+      const { data } = await axios.get("/api/v1/stripeapikey");
 
-    setstripeApiKey(data.stripeApiKey);
+      setStripeApiKey(data.stripeApiKey);
+    } catch (error) {
+      // error
+    }
   }
 
   useEffect(() => {
@@ -57,6 +61,7 @@ function App() {
     <>
       <Header />
       {isAuthenticated && <UserOptions user={user} />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/product/:id" element={<ProductDetails />} />
@@ -72,14 +77,16 @@ function App() {
           <Route path="/password/update" element={<UpdatePassword />} />
           <Route path="/shipping" element={<Shipping />} />
           <Route path="/order/confirm" element={<ConfirmOrder />} />
-          {stripeApiKey && (<Route
-            path="/process/payment"
-            element={
+          {stripeApiKey && (
+            <Route
+              path="/process/payment"
+              element={
                 <Elements stripe={loadStripe(stripeApiKey)}>
                   <Payment />
                 </Elements>
-            }
-          />)}
+              }
+            />
+          )}
           <Route path="/success" element={<OrderSuccess />} />
           <Route path="/orders" element={<MyOrders />} />
           <Route path="/order/:id" element={<OrderDEtails />} />

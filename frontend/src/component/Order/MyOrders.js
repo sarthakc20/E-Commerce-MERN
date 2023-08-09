@@ -16,7 +16,7 @@ const MyOrders = () => {
 
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state) => state.user);
+  const { user, isAuthenticated } = useSelector((state) => state.user);
   const { loading, error, orders } = useSelector((state) => state.myOrders);
 
   const columns = [
@@ -94,13 +94,14 @@ const MyOrders = () => {
 
   return (
     <>
-      <MetaData
-        title={user.name ? `${user.name.split(" ")[0]} - Orders` : "Loading..."}
-      />
 
-      {loading ? (
+      {loading || !isAuthenticated ? (
         <Loader />
       ) : (
+        <>
+        <MetaData
+        title={user ? `${user.name.split(" ")[0]} - Orders` : "Loading..."}
+      />
         <div className="myOrdersPage">
           <DataGrid
             rows={rows}
@@ -113,6 +114,7 @@ const MyOrders = () => {
 
           <Typography id="myOrdersHeading">{user.name}'s Orders</Typography>
         </div>
+        </>
       )}
     </>
   );

@@ -64,7 +64,7 @@ const Payment = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/v1/process/payment",
+        "/api/v1/payment/process",
         paymentData,
         config
       );

@@ -186,7 +186,7 @@ exports.updateProfile = catchAsyncError(async (req, res, next) => {
 
 
   // Adding cloudinary
-  if (req.body.name || req.body.email || req.body.avatar !== "") {
+  if (req.body.avatar !== "") {
     const user = await User.findById(req.user.id);
 
     const imageId = user.avatar.public_id;
