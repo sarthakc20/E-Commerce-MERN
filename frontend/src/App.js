@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Header from "./component/layout/Header/Header";
 import Footer from "./component/layout/Footer/Footer";
 import Home from "./component/Home/Home";
@@ -9,10 +10,7 @@ import ProductDetails from "./component/Product/ProductDetails";
 import Products from "./component/Product/Products";
 import Search from "./component/Product/Search";
 import LoginSignUp from "./component/User/LoginSignUP";
-import store from "./store";
-import { loadUser } from "./actions/userAction";
 import UserOptions from "./component/layout/Header/UserOptions";
-import { useSelector } from "react-redux";
 import Profile from "./component/User/Profile";
 import ProtectedRoute from "./component/Route/ProtectedRoute";
 import UpdateProfile from "./component/User/UpdateProfile";
@@ -26,6 +24,11 @@ import Payment from "./component/Cart/Payment";
 import OrderSuccess from "./component/Cart/OrderSuccess";
 import MyOrders from "./component/Order/MyOrders";
 import OrderDEtails from "./component/Order/OrderDEtails";
+import Dashboard from "./component/admin/Dashboard";
+import ProductList from "./component/admin/ProductList";
+import NewProduct from "./component/admin/NewProduct";
+import store from "./store";
+import { loadUser } from "./actions/userAction";
 import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
@@ -70,7 +73,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<LoginSignUp />} />
 
-        {/* protected routes */}
+        {/* Protected Routes */}
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
           <Route path="/account" element={<Profile />} />
           <Route path="/me/update" element={<UpdateProfile />} />
@@ -90,6 +93,13 @@ function App() {
           <Route path="/success" element={<OrderSuccess />} />
           <Route path="/orders" element={<MyOrders />} />
           <Route path="/order/:id" element={<OrderDEtails />} />
+        </Route>
+
+        {/* Admin Routes */}
+        <Route element={<ProtectedRoute isAdmin={true} />}>
+        <Route  path="/admin/dashboard" element={<Dashboard />} />
+        <Route  path="/admin/products" element={<ProductList />} />
+        <Route  path="/admin/product" element={<NewProduct />} />
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />
