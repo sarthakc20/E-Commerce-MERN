@@ -56,7 +56,7 @@ const ProcessOrder = () => {
     }
 
     dispatch(getOrderDEtails(id));
-  }, [dispatch, alert, error, updateError, isUpdated]);
+  }, [dispatch, alert, error, updateError, isUpdated, id]);
 
   return (
     <>

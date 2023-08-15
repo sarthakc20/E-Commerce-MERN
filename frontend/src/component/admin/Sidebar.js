@@ -48,7 +48,7 @@ const Sidebar = () => {
         </p>
       </Link>
 
-      <Link to="/admin/user">
+      <Link to="/admin/users">
         <p>
             <BsFillPersonFill /> Users
         </p>

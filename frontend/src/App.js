@@ -30,6 +30,9 @@ import NewProduct from "./component/admin/NewProduct";
 import UpdateProduct from "./component/admin/UpdateProduct";
 import OrderList from "./component/admin/OrderList";
 import ProcessOrder from "./component/admin/ProcessOrder";
+import UsersList from "./component/admin/UsersList";
+import UpdateUser from "./component/admin/UpdateUser";
+import ProductReviews from "./component/admin/ProductReviews";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
 import axios from "axios";
@@ -106,6 +109,9 @@ function App() {
         <Route  path="/admin/product/:id" element={<UpdateProduct />} />
         <Route  path="/admin/orders" element={<OrderList />} />
         <Route  path="/admin/orders/:id" element={<ProcessOrder />} />
+        <Route  path="/admin/users" element={<UsersList />} />
+        <Route  path="/admin/user/:id" element={<UpdateUser />} />
+        <Route  path="/admin/reviews" element={<ProductReviews />} />
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />
