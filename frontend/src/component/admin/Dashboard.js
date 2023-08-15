@@ -30,13 +30,19 @@ const Dashboard = () => {
       }
     });
 
-    let inStock = products.length - outOfStock;
+  let inStock = products.length - outOfStock;
 
-    useEffect(() => {
-      dispatch(getAdminProducts());
+  useEffect(() => {
+    dispatch(getAdminProducts());
 
-      dispatch(getAllOrders());
-    }, [dispatch]);
+    dispatch(getAllOrders());
+  }, [dispatch]);
+
+  let totalAmount = 0;
+  orders &&
+    orders.forEach((item) => {
+      totalAmount += item.totalPrice;
+    });
 
   const lineState = {
     labels: ["Initial Amount", "Amount Earned"],
@@ -45,7 +51,7 @@ const Dashboard = () => {
         label: "TOTAL AMOUNT",
         backgroundColor: ["tomato"],
         hoverBackgroundColor: ["rgb(197, 72, 49)"],
-        data: [0, 4000],
+        data: [0, totalAmount],
       },
     ],
   };
@@ -73,7 +79,7 @@ const Dashboard = () => {
           <div className="dashboardSummary">
             <div>
               <p>
-                Total Amount <br /> ₹4000
+                Total Amount <br /> ₹{totalAmount.toFixed(2)}
               </p>
             </div>
             <div className="dashboardSummaryBox2">
