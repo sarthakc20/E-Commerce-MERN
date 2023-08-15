@@ -9,15 +9,8 @@
   padding: 1vmax;
   border-radius: 3px;
   text-align: center;
-  background-color: #b6acacce;
-  transition: all 0.5s;
+  background-color: #b1a3a3ce !important;
 }
-
-/* .orderDetailsContainer > h1:hover {
-    color: #b3a9a9ce;
-    background-color: #fffffff6;
-    border: 1.8px solid #b3a9a9ce;
-  } */
 
 .orderDetailsContainer {
   padding: 5vmax;

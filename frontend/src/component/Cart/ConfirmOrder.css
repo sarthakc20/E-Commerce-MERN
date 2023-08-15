@@ -74,6 +74,8 @@
 .confirmCartItemsContainer > div > span {
   font: 100 1vmax "Roboto";
   color: #5e5e5e;
+  display: grid;
+  padding-right: 2%;
 }
 
 .orderSummary {

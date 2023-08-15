@@ -27,6 +27,9 @@ import OrderDEtails from "./component/Order/OrderDEtails";
 import Dashboard from "./component/admin/Dashboard";
 import ProductList from "./component/admin/ProductList";
 import NewProduct from "./component/admin/NewProduct";
+import UpdateProduct from "./component/admin/UpdateProduct";
+import OrderList from "./component/admin/OrderList";
+import ProcessOrder from "./component/admin/ProcessOrder";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
 import axios from "axios";
@@ -100,6 +103,9 @@ function App() {
         <Route  path="/admin/dashboard" element={<Dashboard />} />
         <Route  path="/admin/products" element={<ProductList />} />
         <Route  path="/admin/product" element={<NewProduct />} />
+        <Route  path="/admin/product/:id" element={<UpdateProduct />} />
+        <Route  path="/admin/orders" element={<OrderList />} />
+        <Route  path="/admin/orders/:id" element={<ProcessOrder />} />
         </Route>
 
         <Route path="/password/forgot" element={<ForgotPassword />} />

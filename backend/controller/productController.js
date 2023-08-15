@@ -7,7 +7,6 @@ const { request } = require("express");
 
 // Create Product -- Admin
 exports.createProduct = catchAsyncError(async (req, res, next) => {
-  
   let images = [];
 
   if (typeof req.body.images === "string") {
@@ -101,6 +100,39 @@ exports.updateProduct = catchAsyncError(async (req, res, next) => {
     return next(new ErrorHandler("Product not found", 404));
   }
 
+  // Update Images
+  let images = [];
+
+  if (typeof req.body.images === "string") {
+    // "string" means there is only one image
+    images.push(req.body.images);
+  } else {
+    images = req.body.images;
+  }
+
+  if (images !== undefined) {
+    // Deleting Images from Cloudinary
+
+    for (let i = 0; i < product.images.length; i++) {
+      await cloudinary.v2.uploader.destroy(product.images[i].public_id);
+    }
+
+    const imagesLinks = [];
+
+    for (let i = 0; i < images.length; i++) {
+      const result = await cloudinary.v2.uploader.upload(images[i], {
+        folder: "products",
+      });
+
+      imagesLinks.push({
+        public_id: result.public_id,
+        url: result.secure_url,
+      });
+    }
+
+    req.body.images = imagesLinks;
+  }
+
   product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -125,11 +157,10 @@ exports.deleteProducts = catchAsyncError(async (req, res, next) => {
 
   for (let i = 0; i < product.images.length; i++) {
     await cloudinary.v2.uploader.destroy(product.images[i].public_id);
-    
   }
 
   await product.deleteOne();
-  
+
   return res.status(200).json({
     success: true,
     message: "Product deleted successfully",

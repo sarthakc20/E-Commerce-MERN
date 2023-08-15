@@ -54,12 +54,12 @@ const ProductList = () => {
   }, [dispatch, alert, error, navigate, deleteError, isDeleted ]);
 
   const columns = [
-    { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
+    { field: "id", headerName: "Product ID", minWidth: 270, flex: 0.5 },
 
     {
       field: "name",
       headerName: "Name",
-      minWidth: 350,
+      minWidth: 270,
       flex: 1,
     },
     {
