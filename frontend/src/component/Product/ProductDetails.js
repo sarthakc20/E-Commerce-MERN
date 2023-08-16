@@ -98,6 +98,9 @@ const ProductDetails = () => {
       dispatch({ type: NEW_REVIEW_RESET });
     }
     dispatch(getProductDetails(id));
+
+    window.scrollTo(0, 0);
+
   }, [dispatch, id, error, alert, reviewError, success]);
 
   return (

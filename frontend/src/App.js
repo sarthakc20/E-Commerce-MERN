@@ -33,6 +33,9 @@ import ProcessOrder from "./component/admin/ProcessOrder";
 import UsersList from "./component/admin/UsersList";
 import UpdateUser from "./component/admin/UpdateUser";
 import ProductReviews from "./component/admin/ProductReviews";
+import Contact from "./component/layout/Contact/Contact";
+import About from "./component/layout/About/About";
+import NotFound from "./component/layout/Not Found/NotFound";
 import store from "./store";
 import { loadUser } from "./actions/userAction";
 import axios from "axios";
@@ -55,6 +58,7 @@ function App() {
   }
 
   useEffect(() => {
+
     WebFont.load({
       google: {
         families: ["Roboto", "Droid Sans", "Chilanka"],
@@ -78,6 +82,9 @@ function App() {
         <Route path="/products/:keyword" element={<Products />} />
         <Route path="/search" element={<Search />} />
         <Route path="/login" element={<LoginSignUp />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>

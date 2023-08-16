@@ -62,10 +62,11 @@ footer {
 .midFooter > img {
   width: 3.5vmax;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .midFooter > img:hover {
-  width: 3.9vmax;
+  width: 3.6vmax;
 }
 
 .midFooter > h1 {
@@ -92,7 +93,6 @@ footer {
 .rightFooter > h4 {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-size: 1.4vmax;
-  align-items: center;
 }
 
 .rightFooter > a {
