@@ -18,6 +18,7 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createOrder, clearErrors } from "../../actions/orderAction";
+import { removeItemsFromCart } from "../../actions/cartAction";
 
 const Payment = () => {
   const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
@@ -103,6 +104,12 @@ const Payment = () => {
           dispatch(createOrder(order));
 
           navigate("/success");
+
+          cartItems &&
+            cartItems.map((item) =>
+              dispatch(removeItemsFromCart(item.product))
+            );
+
         } else {
           alert.error("There's some issue while processing payment ");
         }

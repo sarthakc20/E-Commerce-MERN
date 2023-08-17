@@ -171,7 +171,7 @@ const ProductDetails = () => {
             open={open}
             onClose={submitReviewToggle}
           >
-            <DialogTitle>Submit Title</DialogTitle>
+            <DialogTitle>Submit Your Review</DialogTitle>
             <DialogContent className="submitDialog">
               <Rating
                 onChange={(e) => setRating(e.target.value)}

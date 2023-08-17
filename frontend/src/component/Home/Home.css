@@ -1,5 +1,8 @@
 .banner {
-  background-color: black;
+  background-image: url("../../images/c3.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 100vmin;
   display: flex;
   flex-direction: column;
@@ -19,7 +22,7 @@
 }
 
 .banner > p > img {
-    width: 1.5vmax;
+  width: 1.5vmax;
 }
 
 .banner > a > button {
@@ -34,7 +37,7 @@
 }
 
 .banner > a > button:hover {
-  background-color: black;
+  background: transparent;
   color: white;
 }
 
@@ -62,12 +65,12 @@
 }
 
 .container {
-    display: flex;
-    margin: 2vmax auto;
-    width: 80vw;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 100%;
+  display: flex;
+  margin: 2vmax auto;
+  width: 80vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
 }
 
 .productCard {
@@ -86,7 +89,7 @@
 }
 
 /* ReactStars */
-.productCard > div { 
+.productCard > div {
   margin: 0.5vmax;
   display: flex;
   justify-content: flex-start;
@@ -117,34 +120,56 @@
   transform: translateY(-1vmax);
 }
 
+.homeProduct {
+  display: flex;
+  justify-content: center;
+}
+
+.homeProduct > a {
+  background-color: rgb(38, 37, 37);
+  color: white;
+  padding: 1vmax 3vmax;
+  cursor: pointer;
+  font: 400 1vmax "Roboto";
+  text-decoration: none;
+  margin: 1vmax;
+  border: 0.1vmax solid rgb(51, 51, 51);
+  transition: all 0.5s;
+}
+
+.homeProduct > a:hover {
+  background-color: white;
+  color: rgb(51, 51, 51);
+  
+}
 
 @media screen and (max-width: 768px) {
-    .banner > a > button {
-        width: 13vmax;
-        height: 5vmax;
-        font: 500 1.5vmax "Roboto";
-    }
+  .banner > a > button {
+    width: 13vmax;
+    height: 5vmax;
+    font: 500 1.5vmax "Roboto";
+  }
 
-    .productCard > p {
-      font-size: 1.7vmax;
-    }
-  
-    .productCard > div {
-      margin: 0vmax;
-      display: block;
-    }
-  
-    .productCard > span {
-      font-size: 1.5vmax;
-    }
-  
-    .productCard > div > span {
-      margin: 0 0.5vmax;
-      font: 300 1.3vmax "Roboto";
-    }
+  .productCard > p {
+    font-size: 1.7vmax;
+  }
 
-    .productCardSpan {
-      font: 300 1vmax "Roboto";
-      display: block;
-    }
+  .productCard > div {
+    margin: 0vmax;
+    display: block;
+  }
+
+  .productCard > span {
+    font-size: 1.5vmax;
+  }
+
+  .productCard > div > span {
+    margin: 0 0.5vmax;
+    font: 300 1.3vmax "Roboto";
+  }
+
+  .productCardSpan {
+    font: 300 1vmax "Roboto";
+    display: block;
+  }
 }

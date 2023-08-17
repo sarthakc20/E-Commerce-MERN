@@ -8,16 +8,14 @@ import { clearErrors, getProduct } from "../../actions/productAction";
 import { useSelector, useDispatch } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-
   const alert = useAlert();
 
   const dispatch = useDispatch();
-  
-  const { loading, error, products } = useSelector(
-    (state) => state.products
-  );
+
+  const { loading, error, products } = useSelector((state) => state.products);
 
   useEffect(() => {
     if (error) {
@@ -35,7 +33,6 @@ const Home = () => {
         <>
           <MetaData title="E MARKET" />
           <div className="banner">
-            {/* <p>Welcome to E MARKET</p> */}
             <p>
               Welcome to <img src={logo} alt="logo" />
               MARKET
@@ -53,8 +50,11 @@ const Home = () => {
 
           <div className="container" id="container">
             {products &&
-              products.map((product) => 
-              <Product product={product} />)}
+              products.map((product) => <Product product={product} />)}
+          </div>
+
+          <div className="homeProduct">
+            <Link to="/products">View All Products</Link>
           </div>
         </>
       )}

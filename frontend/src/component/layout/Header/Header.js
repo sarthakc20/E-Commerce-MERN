@@ -3,13 +3,14 @@ import { ReactNavbar } from "overlay-navbar";
 import { RiAccountPinBoxLine } from "react-icons/ri";
 import { MdSearch } from "react-icons/md";
 import { BsCart4 } from "react-icons/bs";
-import logo from "../../../images/logo.png";
+import logo from "../../../images/logo1.png";
 
 const options = {
   burgerColor: "#ADEFD1FF",
   burgerColorHover: "#F7D8BA",
   logo,
   logoWidth: "20vmax",
+  logoHeight: "unset",
   navColor1: "#FFFEFA",
   logoHoverSize: "10px",
   logoHoverColor: "#F7D8BA",
@@ -23,23 +24,18 @@ const options = {
   link4Url: "/about",
   link1Size: "1.3vmax",
   link1Color: "rgba(35, 35, 35,0.8)",
-  nav1justifyContent: "flex-end",
+  nav1justifyContent: "center",
   nav2justifyContent: "flex-end",
   nav3justifyContent: "flex-start",
   nav4justifyContent: "flex-start",
   link1ColorHover: "#F7D8BA",
   link1Margin: "1vmax",
-
   profileIcon: true,
-//   profileIconColor: "rgba(35, 35, 35,0.8)",
   ProfileIconElement: RiAccountPinBoxLine,
   searchIcon: true,
-//   searchIconColor: "rgba(35, 35, 35,0.8)",
   SearchIconElement: MdSearch,
   cartIcon: true,
-//   cartIconColor: "rgba(35, 35, 35,0.8)",
   CartIconElement: BsCart4,
-
   profileIconUrl: "/login",
   profileIconColor: "rgba(35, 35, 35,0.8)",
   searchIconColor: "rgba(35, 35, 35,0.8)",

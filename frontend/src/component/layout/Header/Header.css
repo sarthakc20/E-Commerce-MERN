@@ -9,3 +9,8 @@
   height: 56px;
   border-radius: 100%;
 }
+
+.header-wrapper {
+  position: relative;
+}
+

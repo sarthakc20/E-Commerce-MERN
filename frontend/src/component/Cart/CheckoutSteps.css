@@ -10,7 +10,7 @@
   flex-direction: column;
   align-items: center;
   font-size: 17px;
-  color: #777;
+  color: #777 !important;
   transition: color 0.3s ease;
 }
 
@@ -25,11 +25,11 @@
 
 .MuiStepConnector-root {
   height: 1px;
-  background-color: rgba(0, 0, 0, 0.349);
+  background-color: rgba(0, 0, 0, 0.349) !important;
 }
 
 .MuiStepConnector-active,
 .MuiStepConnector-completed {
-  background-color: #fa8163f6;
+  background-color: #fa8163f6 !important;
 }
 

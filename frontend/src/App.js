@@ -70,6 +70,8 @@ function App() {
     getStripeApiKey();
   }, []);
 
+  // window.addEventListener("contextmenu", (e) => e.preventDefault()); // prevent to right click
+
   return (
     <>
       <Header />
