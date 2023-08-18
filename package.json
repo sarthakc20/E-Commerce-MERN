@@ -1,12 +1,15 @@
 {
-  "name": "ecom",
+  "name": "emarket",
   "version": "1.0.0",
   "description": "",
   "main": "backend/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js"
+    "start": "cross-env NodeEnv=Production node server.js",
+    "dev": "cross-env NodeEnv=Development nodemon server.js",
+    "bootstrap": "npm install && npm run front-end-build",
+    "front-end-build": "cd frontend && npm install && npm run build",
+    "front-end-build-dev": "cd frontend && npm run build"
   },
   "author": "Sarthak Chatterjee",
   "license": "ISC",
@@ -24,5 +27,8 @@
     "nodemon": "^3.0.1",
     "stripe": "^12.17.0",
     "validator": "^13.9.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

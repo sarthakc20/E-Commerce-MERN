@@ -12,7 +12,7 @@ import { Typography } from "@mui/material";
 import Slider from "@mui/material/Slider";
 
 const categories = [
-  "Laptop", "Footware", "Bottom", "Tops", "Attire", "Camera", "SmartPhones", "All"
+  "Laptop", "Footware", "Bottom", "Tops", "Attire", "Camera", "SmartPhones", "Accessories", "All"
 ];
 
 const Products = () => {

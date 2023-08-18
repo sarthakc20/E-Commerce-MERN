@@ -25,6 +25,23 @@ exports.registerUser = catchAsyncError(async (req, res, next) => {
     },
   });
 
+  const message = `Welcome to E-MARKET, ${user.name}. You are registered successfully.\n Start shopping now!`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: `Registration Successfull`,
+      message,
+    });
+
+    res.status(200).json({
+      success: true,
+      message: `Email sent to ${user.email} successfully`,
+    });
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 500));
+  }
+
   sendToken(user, 201, res);
 });
 
@@ -81,11 +98,9 @@ exports.forgotPassword = catchAsyncError(async (req, res, next) => {
 
   await user.save({ validateBeforeSave: false });
 
-  // const resetPassowrdUrl = `${req.protocol}://${req.get(
-  //   "host"
-  // )}/api/v1/password/reset/${resetToken}`;
-
-  const resetPassowrdUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+  const resetPassowrdUrl = `${req.protocol}://${req.get(
+    "host"
+  )}/password/reset/${resetToken}`;
 
   const message = `Your password reset token is:- \n\n ${resetPassowrdUrl} \n\nIf you have not requested this email then, please ignore this.`;
 

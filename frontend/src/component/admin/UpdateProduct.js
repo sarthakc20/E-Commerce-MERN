@@ -50,6 +50,7 @@ const UpdateProduct = () => {
     "Attire",
     "Camera",
     "SmartPhones",
+    "Accessories"
   ];
 
   const { id } = useParams();

@@ -6,6 +6,7 @@ import profilelogo from "../../../images/user.png";
 import { RiDashboardFill } from "react-icons/ri";
 import { BsCartFill } from "react-icons/bs";
 import { BsFillPersonFill } from "react-icons/bs";
+import { FaSearch } from "react-icons/fa";
 import { FaList } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { AiFillHome } from "react-icons/ai";
@@ -28,6 +29,7 @@ const UserOptions = ({ user }) => {
 
   const options = [
     { icon: <FaList />, name: "Orders", func: orders },
+    { icon: <FaSearch />, name: "Search", func: search },
     { icon: <BsFillPersonFill />, name: "Profile", func: account },
     {
       icon: (
@@ -67,6 +69,10 @@ const UserOptions = ({ user }) => {
 
   function orders() {
     navigate("/orders");
+  }
+
+  function search() {
+    navigate("/search");
   }
 
   function account() {
